@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Window Size</title>
+    <style>
+        .tag{
+            display: inline-block; /*컨텐트를 감싸면서 크기가 변경된다.*/
+            background-color: thistle;
+            padding: 16px;
+            margin: 16px;
+            font-size: 48px;
+        }
+    </style>
+</head>
+<body>
+    <div class="tag">Window Size</div>
+    <script>
+        const tag=document.querySelector('.tag'); 
+        /*스크립트가 실행되면 querySelector를 통해 찾은 돔 요소가 할당되고
+        tag는 div를 가리킨다.*/
+        /*처음부터 로딩이 됐을 때부터  정보를 보고 싶다.*/
+        function updateTag(){
+            tag.innerHTML=`
+                window.screen:${window.screen.width}, ${window.screen.height}<br/>
+                window.outer${window.outerWidth}, ${window.outerHeight}<br/>
+                window.inner${window.innerWidth}, ${window.innerHeight}<br/>
+                documentElement.clientWidth${document.documentElement.clientWidth}, ${document.documentElement.clientHeight}
+            `;
+        }
+        window.addEventListener('resize', ()=> { 
+            /*전달받은 event를 사용하지 않기 때문에 ()빈 채로 놔둔다.*/
+            /*사이즈가 변경될 때만 updateTag 콜백 함수 호출*/
+            updateTag(); 
+        }); 
+        updateTag(); /*페이지가 처음 로딩될 때 보이는 화면*/
+    </script>
+</body>
+</html>

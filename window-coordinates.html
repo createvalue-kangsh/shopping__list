@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coordinates 좌표</title>
+    <style>
+        body{
+            background-color: black;
+            /*if 사용자가 스크롤을 못 하게 하고 싶다면?
+            overflow:hidden
+            컨텐츠가(문서의 내용) 윈도우보다 벗어나게 되면 안 보이게 처리한다.*/
+        }
+        div{
+            width: 250px;
+            height: 250px;
+            background-color: blanchedalmond;
+            margin-bottom: 4px;
+            border-radius: 4px;
+        }
+
+        .special{
+            background-color:lightsalmon;
+        }
+        aside{
+            position: fixed;
+            top: 20px;
+            right: 20px;
+        }
+
+    </style>
+</head>
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div class="special"></div>
+    <div></div>
+    <div></div>
+    <aside>
+        <button class="scroll-by">Scroll by 100px(y)</button> <!--y 좌표로 부터 이동한다.-->
+        <!--화면으로부터 위에서부터 100px씩 계속 이동한다.-->
+        <button class="scroll-to">Scroll to 100px(y)</button> <!--y 좌표로 부터 이동한다.-->
+        <!--화면으로부터 위에서부터 딱 100px 떨어진 곳으로 이동한다..-->
+        <button class="scroll-into">Scroll into special</button> <!--special한 요소가 이동한다.-->
+        <!--special한 구역으로 이동한다.-->
+    </aside>
+    <script>
+        //script : 스크립트 요소 : 데이터와 실행 가능한 코드를 문서에 포함할 때 사요하여 js 코드와 함께 쓰인다.
+        const special= document.querySelector('.special'); 
+        //special이라는 변수에 document.querySelector() 를 이용해서 special 요소를 special 변수에 지정한다.
+        //{제공한 선택자 또는 선택자 뭉치와 일치하는 문서 내 첫 번째 element를 반환한다.  일치하는 요소가 없으면 null을 반환한다.}
+        //즉, 선택자와 일치하는 요소를 찾으면 검색을 멈추고 첫 번째 요소를 반환한다.
+        special.addEventListener('click',(event)=>{
+        //1. special 변수에 addEventlistener()를 추가한다.
+        //2. click이 되면 우리가 등록한 함수가 호출된다.
+        //3. event에는 event라는 객체가 전달된다. =>클릭이 된 event가 다양한 정보를 담은 event 객체가 콜백함수에 전달된다.
+        const rect= special.getBoundingClientRect();
+        //getBoundingClientRect(): 웹 페이지의 요소나 사이즈에 대한 위치를 알려주는 함수
+        //special 요소에서 get어쩌구를 호출해서 그 값은 rect에 받아온다.
+        console.log(rect); 
+        //rect값: special 요소의 위치를 출력한다.
+        console.log(`client:${event.clientX}, ${event.clientY}`);
+        console.log(`page:${event.pageX}, ${event.pageY}`);
+        });
+
+        const scrollBy = document.querySelector('.scroll-by');
+        const scrollTo = document.querySelector('.scroll-to');
+        const scrollInto = document.querySelector('.scroll-into');
+
+        scrollBy.addEventListener('click', ()=>{
+            window.scrollBy(0,100);
+            //window에 있는 scrollBy api(함수)를 이용해서 y축 100px 씩 이동
+        });
+        scrollTo.addEventListener('click', ()=>{
+            window.scrollTo(0,100);
+            //window에는 scrollBy api(함수)를 이용해서 y축 100px 씩 이동
+        });
+        scrollInto.addEventListener('click', ()=>{
+            special.scrollIntoView();
+            //window에 있는 scrollBy api(함수)를 이용해서 special 요소가 100px 씩 이동
+        });
+    </script>
+</body>
+</html>

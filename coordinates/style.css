@@ -1,0 +1,35 @@
+body{
+    background-color: black;
+    margin: 0;
+}
+
+.line{
+    position: absolute;
+    background-color: white;
+}
+/*수평, 수직선의 사이지를 지정해 줘야 선이 보인다.*/
+
+.horizontal{
+    width: 100%; /*옆으로 수평선이 늘어나야 하니까 100%*/
+    height: 1px;
+    /*left : 50% ;(기본값을 지워줌으로써 translate이 기본값에 묶여있지 않게 한다.)*/
+}
+
+.vertical{
+    width: 1px;
+    height: 100%;
+    /*top : 50% ;(기본값을 지워줌으로써 translate이 기본값에 묶여있지 않게 한다.)*/
+}
+
+.target{
+    position: absolute;
+    transform: translate(-50%, -50%);
+    /*요소(img)의 절반만큼 x축으로 이동(-50%), 요소(img)의 절반만큼 y축으로 이동*/
+}
+
+.tag{
+    color: white;
+    position: absolute;
+    font-size: 38px;
+    margin: 20px; /*margin을 이용해서 target img와의 거리를 확보한다.*/
+}

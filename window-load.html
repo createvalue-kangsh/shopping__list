@@ -1,0 +1,42 @@
+<!DOCTYPE html> <!--웹 페이지가 있다면 브라우저에서 html file을 먼저 읽은 다음에 리소스, js를 다운로드 한다. -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="./test.js" defer></script>
+    <!--defer option을 넣게 되면 js 가 먼저 출력이 되고 dom ->리소스-> load  출력된다.-->
+    <!--defer을 쓰게 되면 html의 전체가 분석이 완료된 다음에 dom ->리소스-> load 순으로 다운로드 된다.-->
+</head>
+<body>
+    
+    <script>
+        //only document(html)만 완료가 되면 함수가 호출된다.
+        window.addEventListener('DOMContentLoaded',()=>{
+        //body 끝에 script를 넣고 윈도우에서 이벤트리스너를 등록해서 페이지가 모두'load'가 되었을 때,
+        //콜백 함수를 등록
+        console.log('DOMContentLoaded');
+    });
+
+        //after resource(페이지 안에서 쓰여지고 있는 것들 : 폰트, 이미지, css) 다운로드가 완료가 되면 호출된다.
+        window.addEventListener('load',()=>{
+        //body 끝에 script를 넣고 윈도우에서 이벤트리스너를 등록해서 페이지가 모두'load'가 되었을 때,
+        //콜백 함수를 등록
+        console.log('load');
+    });
+
+    //before unload 페이지가 끝나기 전에 호출이 된다.
+    //사용자가 페이지를 나가기 전에 동작을 처리할 때 사용한다.
+    window.addEventListener('beforeunload',()=>{
+        console.log('beforeunload');
+    });
+
+    //resource is being unloaded 리소스가 끝나기 전에 호출된다.
+    //(로드가 안 될 때: 페이지가 끝날 때)호출되는 
+    window.addEventListener('unload',()=>{
+        console.log('unload');
+    });
+
+    </script>
+</body>
+</html>
